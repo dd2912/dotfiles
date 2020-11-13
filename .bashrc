@@ -19,7 +19,8 @@ svndiff()     { svn diff "$@" | colordiff; }
 svndiffless() { svn diff "$@" | colordiff | less -R; }
 
 # aliases
-alias ll='ls -alhF --color=auto'
+#alias ll='ls -alhF --color=auto'
+alias ll='exa --long --header --git -a -F'
 alias l='ls -lhF --color=auto'
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
@@ -47,49 +48,7 @@ export PATH=~/.local/bin/:$PATH
 export PATH=~/.scripts/:$PATH
 export PATH=/opt/ghc/bin:$PATH
 
-################################################################################
-##  FUNCTIONS                                                                 ##
-################################################################################
-
-##  ARRANGE $PWD AND STORE IT IN $NEW_PWD
-##      * The home directory (HOME) is replaced with a ~
-##      * The last pwdmaxlen characters of the PWD are displayed
-##      * Leading partial directory names are striped off
-##              /home/me/stuff -> ~/stuff (if USER=me)
-##              /usr/share/big_dir_name -> ../share/big_dir_name (if pwdmaxlen=20)
-##
-##      Original source: WOLFMAN'S color bash promt
-##      https://wiki.chakralinux.org/index.php?title=Color_Bash_Prompt#Wolfman.27s
-##
-bash_prompt_command() {
-        # How many characters of the $PWD should be kept
-        local pwdmaxlen=25
-
-        # Indicate that there has been dir truncation
-        local trunc_symbol=".."
-
-        # Store local dir
-        local dir=${PWD##*/}
-
-        # Which length to use
-        pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
-
-        NEW_PWD=${PWD/#$HOME/\~}
-
-        local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
-
-        # Generate name
-        if [ ${pwdoffset} -gt "0" ]
-        then
-                NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
-                NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
-        fi
-    export PS1="${txtred}[${txtblu}\u${bldylw}@${txtgrn}\h${txtrst}:${txtcyn}${NEW_PWD}${txtred}]${txtrst}$ "
-
-}
-
-PROMPT_COMMAND=bash_prompt_command
-
+PROMPT_DIRTRIM=2
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -124,6 +83,4 @@ bakcyn='\e[46m' # Cyan
 bakwht='\e[47m' # White
 txtrst='\e[0m' # Text Reset
 
-
-alias mountdvmm='sshfs dave@mango.cs.columbia.edu:/home/dave/ ~/DVMMLab/ -oIdentityFile=~/.ssh/id_rsa'
-alias unmountdvmm='cd ~ && sudo umount ~/DVMMLab/'
+export PS1="${txtred}[${txtblu}\u${bldylw}@${txtpur}\h ${txtcyn}\w${txtred}]${txtrst}$ "
