@@ -31,7 +31,7 @@ alias valc='valgrind --leak-check=yes'
 alias senv='source env/bin/activate'
 alias penv='deactivate'
 alias mkd='mkdir -pv'
-alias a='sudo apt'
+alias yayr='yay -Rsn'
 alias jn="conda activate && jupyter notebook"
 alias cond="conda deactivate"
 alias yt="youtube-dl --add-metadata -ic"
@@ -84,4 +84,21 @@ bakcyn='\[\e[46m\]' # Cyan
 bakwht='\[\e[47m\]' # White
 txtrst='\[\e[0m\]' # Text Reset
 
-export PS1="${txtred}[${txtblu}\u${bldylw}@${txtpur}\h ${txtcyn}\w${txtred}]${txtrst}$ "
+# defualts
+O_BARCE="$txtcyn[$txtrst"
+USER="$txtblu\u$txtrst"
+AT="$bldylw@$txtrst"
+HOST="$txtgrn\h$txtrst"
+PROMT_PWD="$txtrst\w"
+C_BARCE="$txtcyn]$txtrst"
+
+if [ "$HOSTNAME" = 'dave-xps' ]; then
+    O_BARCE="$txtred[$txtrst"
+    USER="$txtpur\u$txtrst"
+    AT="$bldylw@$txtrst"
+    HOST="$txtgrn\h$txtrst"
+    PROMT_PWD="$txtcyn\w"
+    C_BARCE="$txtred]$txtrst"
+fi
+export PS1="$O_BARCE$USER$AT$HOST $PROMT_PWD$C_BARCE$ "
+#export PS1="${txtred}[${txtblu}\u${bldylw}@${txtpur}\h ${txtcyn}\w${txtred}]${txtrst}$ "
