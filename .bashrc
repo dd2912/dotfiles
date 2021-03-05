@@ -32,7 +32,7 @@ alias senv='source env/bin/activate'
 alias penv='deactivate'
 alias mkd='mkdir -pv'
 alias yayr='yay -Rsn'
-alias jn="conda activate && jupyter notebook"
+alias jn="source ~/anaconda3/bin/activate && jupyter-lab"
 alias cond="conda deactivate"
 alias yt="youtube-dl --add-metadata -ic"
 alias ssh="TERM='xterm-256color' ssh"
@@ -102,3 +102,5 @@ if [ "$HOSTNAME" = 'dave-xps' ]; then
 fi
 export PS1="$O_BARCE$USER$AT$HOST $PROMT_PWD$C_BARCE$ "
 #export PS1="${txtred}[${txtblu}\u${bldylw}@${txtpur}\h ${txtcyn}\w${txtred}]${txtrst}$ "
+
+PROMPT_COMMAND='echo -en "\033]0;$("pwd") | $HOSTNAME\a"'
