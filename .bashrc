@@ -36,6 +36,10 @@ alias jn="source ~/anaconda3/bin/activate && jupyter-lab"
 alias cond="conda deactivate"
 alias yt="youtube-dl --add-metadata -ic"
 alias ssh="TERM='xterm-256color' ssh"
+alias wcuda='watch -n 0.1 nvidia-smi'
+alias pdf='evince'
+alias pn='cd ~/Documents/Research/pytorch && source ~/anaconda3/bin/activate && conda activate pytorch && jupyter notebook'
+alias v='nvim'
 
 alias mountdvmm='sshfs dave@mango.cs.columbia.edu:/dvmm-filer2/users/dave ~/DVMMLab/ -oIdentityFile=~/.ssh/id_rsa'
 alias unmountdvmm='cd ~ && sudo umount ~/DVMMLab/'
