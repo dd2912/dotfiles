@@ -42,7 +42,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     " A plugin of NERDTree showing git status flags.
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
-    Plug 'dpelle/vim-languagetool'
+    Plug 'majutsushi/tagbar'
+    
+    Plug 'dpelle/vim-LanguageTool'
+
+    Plug 'JamshedVesuna/vim-markdown-preview'
 
 
 " All of your Plugins must be added before the following line
@@ -58,18 +62,25 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other setteings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set number relativenumber
 let mapleader ="\<Space>"
-set background=dark
 colorscheme peaksea
+:set number relativenumber
+:set background=dark
 :set tabstop=4
 :set shiftwidth=4
 :set expandtab
 :set encoding=utf-8
+:set spelllang=en
 
 highlight ColorColumn ctermbg=233 guibg=#0f0f0f
 let &colorcolumn=join(range(81,999),",")
 "set colorcolumn=80
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Spell Checking 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> :setlocal spell!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffer Management
@@ -166,8 +177,11 @@ map <leader>t :LLPStartPreview<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<S-Tab>"
+let g:UltiSnipsExpandTrigger="<c-q>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+nmap <F8> :TagbarToggle<CR>
 
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Brave'
