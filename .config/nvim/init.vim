@@ -44,10 +44,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
     Plug 'majutsushi/tagbar'
     
-    Plug 'dpelle/vim-LanguageTool'
-
     Plug 'JamshedVesuna/vim-markdown-preview'
 
+    Plug 'skanehira/preview-markdown.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -80,7 +79,7 @@ let &colorcolumn=join(range(81,999),",")
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell Checking 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F5> :setlocal spell!<CR>
+nmap <leader>s :setlocal spell!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffer Management
@@ -117,7 +116,12 @@ let g:NERDTreeWinSize=35
 "map <leader>nb :NERDTreeFromBookmark<Space>
 "map <leader>nf :NERDTreeFind<cr>
 nmap <leader>n :NERDTreeToggle<CR>  " open current buffer in file tree
-
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerd Tree A plugin of NERDTree showing git status flags.
@@ -181,7 +185,33 @@ let g:UltiSnipsExpandTrigger="<c-q>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-nmap <F8> :TagbarToggle<CR>
 
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Brave'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>w :TagbarToggle<CR>
+
+"let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='brave'
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_github=1
+let vim_markdown_preview_pandoc=1
+
+
+
+let g:preview_markdown_vertical=1
+let g:preview_markdown_parser='mdr'
+let g:preview_markdown_auto_update=1
+
+
+"function! PreviewerMarkdown()
+"    let l:path=expand('%:p')
+"    silent execute "!echo ".l:path." > ~/.lastpreview.log"
+"    :vsp
+"    :execute "bel vert terminal"
+"    :startinsert
+"endfunction
+"
+"nmap <C-m> :call PreviewerMarkdown()<CR>clear<CR> mdr $(cat ~/.lastpreview.log)<CR>
+
+
