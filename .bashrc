@@ -40,6 +40,7 @@ alias wcuda='watch -n 0.1 nvidia-smi'
 alias pdf='evince'
 alias pn='cd ~/Documents/Research/pytorch && source ~/anaconda3/bin/activate && conda activate pytorch && jupyter notebook'
 alias v='nvim'
+alias img='kitty +kitten icat'
 
 alias mountdvmm='sshfs dave@mango.cs.columbia.edu:/dvmm-filer2/users/dave ~/DVMMLab/ -oIdentityFile=~/.ssh/id_rsa'
 alias unmountdvmm='cd ~ && sudo umount ~/DVMMLab/'
