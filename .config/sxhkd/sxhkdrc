@@ -71,9 +71,11 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
-super + alt + bracket{left,right}
-	bspc node -m {prev,next} --follow
+super + ctrl bracket{left,right}
+    bspc monitor --focus {prev,next}
 
+super + alt + bracket{left,right}
+       bspc node -m {prev,next} --follow
 # PRESELECT
 
 # preselect the direction
@@ -118,4 +120,4 @@ super + alt + b
     brave
 # chrome
 super + alt + c
-    chrome
+    google-chrome-stable
