@@ -32,7 +32,10 @@ alias senv='source env/bin/activate'
 alias penv='deactivate'
 alias mkd='mkdir -pv'
 alias yayr='yay -Rsn'
-alias jn="source ~/anaconda3/bin/activate && jupyter-lab"
+alias jn="source ~/miniconda3/bin/activate && conda activate compsci682 && jupyter-lab"
+alias sc="source ~/miniconda3/bin/activate"
+alias ca="conda activate"
+alias ci="conda info --envs"
 alias cond="conda deactivate"
 alias yt="youtube-dl --add-metadata -ic"
 alias ssh="TERM='xterm-256color' ssh"
@@ -41,14 +44,20 @@ alias pdf='evince'
 alias pn='cd ~/Documents/Research/pytorch && source ~/anaconda3/bin/activate && conda activate pytorch && jupyter notebook'
 alias v='nvim'
 alias img='kitty +kitten icat'
+alias python3="python"
 
-alias mountdvmm='sshfs dave@mango.cs.columbia.edu:/dvmm-filer2/users/dave ~/DVMMLab/ -oIdentityFile=~/.ssh/id_rsa'
-alias unmountdvmm='cd ~ && sudo umount ~/DVMMLab/'
+alias mntlab='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 unity:/work/ddirnfeld_umass_edu/ CVLab/'
+alias mntdset='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 gypsum:/mnt/nfs/scratch1/ddirnfeld Datasets/'
+alias mntumass='mntlab && mntdset'
+alias mntos='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 edlab: ~/semester/OS/edlab'
 
 # git bare stuff
 alias bit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+alias gypsum='ssh -J ddirnfeld@gypsum-gateway.cs.umass.edu ddirnfeld@gypsum.cs.umass.edu'
 #neofetch
+
+alias kde="kquitapp5 plasmashell && kstart5 plasmashell"
 
 # export
 export PATH=~/.local/bin/:$PATH
@@ -109,3 +118,8 @@ export PS1="$O_BARCE$USER$AT$HOST $PROMT_PWD$C_BARCE$ "
 #export PS1="${txtred}[${txtblu}\u${bldylw}@${txtpur}\h ${txtcyn}\w${txtred}]${txtrst}$ "
 
 PROMPT_COMMAND='echo -en "\033]0;$("pwd") | $HOSTNAME\a"'
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

@@ -21,9 +21,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 	" Ctrlp
 	Plug 'kien/ctrlp.vim'
 
-	" YCM
-	Plug 'Valloric/YouCompleteMe'
-
 	" A Vim Plugin for Lively Previewing LaTeX PDF Output
 	Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
@@ -32,9 +29,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
     " A collection of language packs for Vim.
     Plug 'sheerun/vim-polyglot'
-
-    " Track the engine.
-    Plug 'SirVer/ultisnips'
 
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'honza/vim-snippets'
