@@ -1,0 +1,4 @@
+#!/bin/bash
+
+VBoxManage startvm vm20 --type headless
+
