@@ -14,7 +14,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-
 svndiff()     { svn diff "$@" | colordiff; }
 svndiffless() { svn diff "$@" | colordiff | less -R; }
 
@@ -33,10 +32,6 @@ alias penv='deactivate'
 alias mkd='mkdir -pv'
 alias yayr='yay -Rsn'
 alias jn="source ~/miniconda3/bin/activate && conda activate compsci682 && jupyter-lab"
-alias sc="source ~/miniconda3/bin/activate"
-alias ca="conda activate"
-alias ci="conda info --envs"
-alias cond="conda deactivate"
 alias yt="youtube-dl --add-metadata -ic"
 alias ssh="TERM='xterm-256color' ssh"
 alias wcuda='watch -n 0.1 nvidia-smi'
@@ -48,16 +43,20 @@ alias python3="python"
 
 alias mntlab='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 unity:/work/ddirnfeld_umass_edu/ CVLab/'
 alias mntdset='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 gypsum:/mnt/nfs/scratch1/ddirnfeld Datasets/'
-alias mntumass='mntlab && mntdset'
+alias mntdave='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 unity:/work/pi_elearned_umass_edu Unity/'
+alias mntumass='mntlab && mntdave && mntdset'
 alias mntos='sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 edlab: ~/semester/OS/edlab'
+
+# conda 
+alias cs="source ~/miniconda3/bin/activate"
+alias ca="conda activate"
+alias ci="conda info --envs"
+alias cx="conda deactivate"
 
 # git bare stuff
 alias bit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
-alias gypsum='ssh -J ddirnfeld@gypsum-gateway.cs.umass.edu ddirnfeld@gypsum.cs.umass.edu'
-#neofetch
-
-alias kde="kquitapp5 plasmashell && kstart5 plasmashell"
+alias kde="kquitapp5 plasmashell && kstart5 plasmashell > /dev/null 2>&1"
 
 # export
 export PATH=~/.local/bin/:$PATH

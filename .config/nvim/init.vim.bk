@@ -11,6 +11,7 @@ endif
 " Define plugins to install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.local/share/nvim/plugged')
+" All pluging go here
 
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -42,6 +43,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
     Plug 'skanehira/preview-markdown.vim'
 
+    Plug 'https://github.com/neoclide/coc.nvim'
+
 " All of your Plugins must be added before the following line
 call plug#end()
 
@@ -53,7 +56,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other setteings
+" Other settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader ="\<Space>"
 colorscheme peaksea
@@ -66,7 +69,7 @@ colorscheme peaksea
 :set spelllang=en
 
 highlight ColorColumn ctermbg=233 guibg=#0f0f0f
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(100,999),",")
 "set colorcolumn=80
 
 
